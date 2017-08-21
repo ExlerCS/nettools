@@ -1,7 +1,9 @@
 # nettools
-Bash scripts that do useful networking stuff.
+Bash scripts that do useful networking stuff, more scripts will get added over time.
 
-Download the installer script, `chmod +x` it and `./installer` to install [PiConnect](https://github.com/tkmarsh/PiConnect) (SSH via MAC address) and [lsip](https://github.com/tkmarsh/lsip) (Lists internal and external IP addresses) or just run this line: 
+Download the installer script, `chmod +x installer.sh` and `./installer.sh` to install:
+- [PiConnect](https://github.com/tkmarsh/PiConnect) (SSH via MAC address)
+- [lsip](https://github.com/tkmarsh/lsip) (Lists internal and external IP addresses)
 
-`wget -O - https://raw.githubusercontent.com/ExlerCS/nettools/master/installer.sh | bash`
+Or just run this line: `wget -O - https://raw.githubusercontent.com/ExlerCS/nettools/master/installer.sh | bash`
 
