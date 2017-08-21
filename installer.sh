@@ -3,17 +3,17 @@ installScript(){
  printf "Downloading $1 from GitHub... "
  eval "wget -q" $3 
  if [ $? -eq 0 ]; then
-    printf "Success\nInstalling $1... "
-      if [ $2 == 'piconnect' ]; then
-  	piconnectAddData
-      fi
+    printf "Success.\nInstalling $1... "
     eval "chmod +x $2.sh"
     eval "sudo mv $2.sh /usr/bin/$2"
     if [ $? -eq 0 ]; then
-     printf "Success\nInstalled $1 successfully.\n"
+     printf "Success.\nInstalled $1 successfully.\n"
     fi
  else
     printf 'Fail\nError downloading, check network connection.\n'
+ fi
+ if [ $2 == 'piconnect' ]; then
+  piconnectAddData
  fi
  printf "\n"
 }
@@ -22,12 +22,12 @@ piconnectAddData(){
  printf '\nPiConnect configuration:\n'
  printf 'Default Username to use: '
  read user
- sed -i "s/\[default login\]/$user/g" piconnect.sh
+ sudo sed -i "s/\[default login\]/$user/g" /usr/bin/piconnect
  printf 'Default MAC Address to use: '
  read mac
 
  if [[ $mac =~ ^([a-fA-F0-9]{2}:){5}[a-fA-F0-9]{2}$ ]]; then
-  sed -i "s/\[default device MAC address\]/$mac/g" piconnect.sh
+ sudo sed -i "s/\[default device MAC address\]/$mac/g" /usr/bin/piconnect
  else
   printf 'Invalid MAC address.\n'
   piconnectAddData
