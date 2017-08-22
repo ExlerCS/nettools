@@ -12,25 +12,25 @@ installScript(){
  else
     printf 'Fail\nError downloading, check network connection.\n'
  fi
- if [ $2 == 'piconnect' ]; then
-  piconnectAddData
+ if [ $2 == 'autossh' ]; then
+  autosshAddData
  fi
  printf "\n"
 }
 
-piconnectAddData(){
- printf '\nPiConnect configuration:\n'
+autosshAddData(){
+ printf '\nAutoSSH configuration:\n'
  printf 'Default Username to use: '
  read user
- sudo sed -i "s/\[default login\]/$user/g" /usr/bin/piconnect
+ sudo sed -i "s/\[default login\]/$user/g" /usr/bin/autossh
  printf 'Default MAC Address to use: '
  read mac
 
  if [[ $mac =~ ^([a-fA-F0-9]{2}:){5}[a-fA-F0-9]{2}$ ]]; then
- sudo sed -i "s/\[default device MAC address\]/$mac/g" /usr/bin/piconnect
+ sudo sed -i "s/\[default device MAC address\]/$mac/g" /usr/bin/autossh
  else
   printf 'Invalid MAC address.\n'
-  piconnectAddData
+  autosshAddData
  fi
 }
 
@@ -40,5 +40,5 @@ if sudo -n false 2>/dev/null; then
 fi
 printf "\e[4mnettools installer\e[0m\n"
 #installScript "[Display Name]" "[Command Name]" "[Script Link]"
-installScript "PiConnect" "piconnect" "https://raw.githubusercontent.com/tkmarsh/PiConnect/master/piconnect.sh"
-installScript "lsip" "lsip" "https://raw.githubusercontent.com/tkmarsh/lsip/master/lsip.sh"
+installScript "AutoSSH" "autossh" "https://raw.githubusercontent.com/ExlerCS/nettools/master/scripts/autossh.sh"
+installScript "lsip" "lsip" "https://raw.githubusercontent.com/ExlerCS/nettools/master/scripts/lsip.sh"
