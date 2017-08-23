@@ -33,12 +33,26 @@ autosshAddData(){
   autosshAddData
  fi
 }
-
+resolvePackage(){
+dpkg -s $1 &> /dev/null
+    if [ $? -eq 0 ]; then
+      printf "$1 already installed.\n"
+     else
+      printf "Installing $1...\n"
+      sudo apt-get install --quiet --yes $1
+      if [ $? -eq 0 ]; then
+       printf "Successfully installed $1.\n"
+      else
+       printf "Fail.\nError installing $1.\n"
+      fi
+    fi
+}
 if sudo -n false 2>/dev/null; then 
  echo "Installation of nettools requires root access, please enter your password:"
  sudo -v
 fi
 printf "\e[4mnettools installer\e[0m\n"
 #installScript "[Display Name]" "[Command Name]" "[Script Link]"
+resolvePackage "nmap"
 installScript "AutoSSH" "autossh" "https://raw.githubusercontent.com/ExlerCS/nettools/master/scripts/autossh.sh"
 installScript "lsip" "lsip" "https://raw.githubusercontent.com/ExlerCS/nettools/master/scripts/lsip.sh"
