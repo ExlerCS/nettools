@@ -11,6 +11,7 @@ installScript(){
     fi
  else
     printf 'Fail\nError downloading, check network connection.\n'
+    exit 1
  fi
  if [ $2 == 'autossh' ]; then
   autosshAddData
@@ -44,6 +45,7 @@ dpkg -s $1 &> /dev/null
        printf "Successfully installed $1.\n"
       else
        printf "Fail.\nError installing $1.\n"
+       exit 1
       fi
     fi
 }
@@ -56,3 +58,4 @@ printf "\e[4mnettools installer\e[0m\n"
 resolvePackage "nmap"
 installScript "AutoSSH" "autossh" "https://raw.githubusercontent.com/ExlerCS/nettools/master/scripts/autossh.sh"
 installScript "lsip" "lsip" "https://raw.githubusercontent.com/ExlerCS/nettools/master/scripts/lsip.sh"
+exit 0
