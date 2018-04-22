@@ -56,6 +56,7 @@ fi
 printf "\e[4mnettools installer\e[0m\n"
 #installScript "[Display Name]" "[Command Name]" "[Script Link]"
 resolvePackage "nmap"
+resolvePackage "dnsutils"
 installScript "AutoSSH" "autossh" "https://raw.githubusercontent.com/ExlerCS/nettools/master/scripts/autossh.sh"
 installScript "lsip" "lsip" "https://raw.githubusercontent.com/ExlerCS/nettools/master/scripts/lsip.sh"
 exit 0
