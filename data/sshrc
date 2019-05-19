@@ -1,0 +1,5 @@
+#!/bin/bash
+IP=$(echo $SSH_CONNECTION | cut -d " " -f 1)
+HOST=$(hostname)
+logger -t ssh-wrapper $USER login from $IP
+python3.6 /home/notroot/.scripts/discord-ssh.py User **$USER** just logged into **$HOST** from **$IP**. &
